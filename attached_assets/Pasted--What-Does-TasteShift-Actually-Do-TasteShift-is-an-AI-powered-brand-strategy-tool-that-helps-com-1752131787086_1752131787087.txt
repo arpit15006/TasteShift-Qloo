@@ -1,0 +1,59 @@
+🧠 What Does TasteShift Actually Do?
+
+TasteShift is an AI-powered brand strategy tool that helps companies predict cultural trends and create marketing campaigns that align with emerging consumer tastes.
+
+It does three powerful things:
+
+⸻
+
+✅ 1. Predict Future Cultural Personas
+
+You give it a region + audience (e.g., “Gen Z in Seoul” or “Millennials in Berlin”), and it:
+	•	Uses Qloo’s Taste AI to find the most popular and trending tastes in that group:
+➤ e.g., favorite music genres, food styles, movie preferences, fashion choices.
+	•	Then uses Google Gemini (LLM) to create a detailed “Future Persona”:
+➤ a description of what this group is likely to be into soon — based on current cross-domain taste patterns.
+
+✅ This helps brands understand where culture is going, not just where it’s been.
+
+⸻
+
+✅ 2. Score Your Marketing Campaign’s Cultural Fit
+
+You paste in your brand campaign idea (e.g., “launching a retro sneaker collab with 90s hip-hop influencers”), and the app:
+	•	Uses LLM + Qloo to calculate a Taste Shock Score:
+➤ A score from 0–100 that shows how aligned or risky your campaign is for the target group.
+	•	It analyzes cultural relevance and gives insights like:
+“Your campaign aligns 80% with the target persona’s taste in music and fashion, but may alienate them with outdated brand tone.”
+
+⸻
+
+✅ 3. Auto-Generate Creative Brand Assets
+
+Once your campaign is scored, the app uses Gemini to automatically generate:
+	•	🎯 Brand taglines
+	•	🖼 Ad ideas or mockups
+	•	✍️ Social media post templates
+	•	🎨 Style suggestions (e.g., colors, tone, visual vibe)
+
+So, in a few clicks, you go from target audience ➝ insights ➝ creative output, all culturally relevant.
+
+⸻
+
+🎯 Who Would Use TasteShift?
+	•	Brand strategists who want to stay ahead of culture.
+	•	Marketers who want to avoid tone-deaf or outdated campaigns.
+	•	Creative directors who need fast inspiration backed by real taste data.
+	•	Product designers trying to align aesthetics with current trends.
+
+⸻
+
+🔥 Why It’s Powerful
+
+❌ Traditional trend reports = static, outdated
+✅ TasteShift = dynamic, predictive, and taste-aware
+
+It combines:
+	•	Qloo’s taste graph (data-driven cultural understanding)
+	•	LLM intelligence (context, language, and creativity)
+	•	Into a real-time SaaS tool for brand innovation.

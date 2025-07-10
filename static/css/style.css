@@ -2,16 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    --danger-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-light: 0 8px 32px rgba(31, 38, 135, 0.37);
-    --shadow-heavy: 0 15px 35px rgba(31, 38, 135, 0.5);
+    --primary-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    --secondary-gradient: linear-gradient(135deg, #232526 0%, #414345 100%);
+    --accent-gradient: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+    --success-gradient: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+    --warning-gradient: linear-gradient(135deg, #eecda3 0%, #ef629f 100%);
+    --info-gradient: linear-gradient(135deg, #667db6 0%, #0082c8 100%);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -22,9 +25,10 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background: var(--primary-gradient);
     min-height: 100vh;
     overflow-x: hidden;
+    color: var(--text-primary);
 }
 
 /* Animated Background */
