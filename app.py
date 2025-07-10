@@ -24,7 +24,11 @@ CORS(app, origins=['*'])
 
 # Configure the database
 database_url = os.environ.get("DATABASE_URL")
-if not database_url:
+if database_url and '#' in database_url:
+    # Fix URL encoding for special characters in password
+    database_url = database_url.replace('#', '%23')
+    logging.info("Fixed URL encoding for database password")
+elif not database_url:
     # Fallback to SQLite for local development
     database_url = "sqlite:///tasteshift.db"
     logging.info("DATABASE_URL not set, using SQLite fallback")
