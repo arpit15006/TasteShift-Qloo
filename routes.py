@@ -10,6 +10,10 @@ import logging
 def index():
     return render_template('index.html')
 
+@app.route('/onboarding')
+def onboarding():
+    return render_template('onboarding.html')
+
 @app.route('/api/generate-persona', methods=['POST'])
 def generate_persona_route():
     try:

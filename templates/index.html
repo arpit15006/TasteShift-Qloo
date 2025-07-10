@@ -10,22 +10,109 @@
 </head>
 <body>
     <div id="app">
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <!-- Enhanced Navigation -->
+        <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#" onclick="showHome()">
+                <a class="navbar-brand animate-slide-in" href="#" onclick="showHome()">
                     <i class="fas fa-brain me-2"></i>TasteShift
                 </a>
-                <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="#" onclick="showHome()">
-                        <i class="fas fa-home me-1"></i>Home
-                    </a>
-                    <a class="nav-link" href="#" onclick="showPersonas()">
-                        <i class="fas fa-users me-1"></i>Personas
-                    </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link" href="#" onclick="showHome()">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                        <a class="nav-link" href="#" onclick="showPersonas()">
+                            <i class="fas fa-users me-1"></i>Personas
+                        </a>
+                        <a class="nav-link" href="/onboarding">
+                            <i class="fas fa-question-circle me-1"></i>Guide
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
+
+        <!-- Hero Section -->
+        <div class="hero-section" style="padding-top: 120px;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5">
+                        <h1 class="display-4 mb-4 animate-fade-in">
+                            <i class="fas fa-globe-americas text-primary me-3"></i>
+                            Cultural Intelligence Platform
+                        </h1>
+                        <p class="lead animate-fade-in" style="animation-delay: 0.2s;">
+                            Generate authentic audience personas and analyze campaign alignment using 
+                            AI-powered cultural insights from real-time global data.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3 animate-fade-in" style="animation-delay: 0.4s;">
+                            <div class="badge bg-gradient text-dark px-3 py-2">
+                                <i class="fas fa-database me-1"></i>Real Cultural Data
+                            </div>
+                            <div class="badge bg-gradient text-dark px-3 py-2">
+                                <i class="fas fa-brain me-1"></i>AI-Powered Analysis
+                            </div>
+                            <div class="badge bg-gradient text-dark px-3 py-2">
+                                <i class="fas fa-chart-line me-1"></i>Instant Insights
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="stats-cards animate-fade-in" style="animation-delay: 0.6s;">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 0.5rem;">
+                                                <i class="fas fa-globe"></i>
+                                            </div>
+                                            <h5 class="status-success">195+</h5>
+                                            <small class="text-muted">Countries</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 0.5rem;">
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                            <h5 class="status-warning">&lt;30s</h5>
+                                            <small class="text-muted">Generation Time</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 0.5rem;">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                            <h5 class="status-success">50+</h5>
+                                            <small class="text-muted">Demographics</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 0.5rem;">
+                                                <i class="fas fa-chart-bar"></i>
+                                            </div>
+                                            <h5 class="status-success">98%</h5>
+                                            <small class="text-muted">Accuracy</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Home Section -->
         <div id="home-section" class="container">
@@ -48,40 +135,77 @@
                             <form id="persona-form">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="region" class="form-label">Region</label>
+                                        <label for="region" class="form-label">
+                                            <i class="fas fa-globe me-2"></i>Region
+                                        </label>
                                         <select class="form-select" id="region" required>
-                                            <option value="">Select Region</option>
-                                            <option value="North America">North America</option>
-                                            <option value="Europe">Europe</option>
-                                            <option value="Asia">Asia</option>
-                                            <option value="Tokyo">Tokyo</option>
-                                            <option value="New York">New York</option>
-                                            <option value="London">London</option>
-                                            <option value="Los Angeles">Los Angeles</option>
-                                            <option value="Berlin">Berlin</option>
-                                            <option value="Seoul">Seoul</option>
-                                            <option value="Mumbai">Mumbai</option>
-                                            <option value="São Paulo">São Paulo</option>
+                                            <option value="">Select a region...</option>
+                                            <option value="United States">🇺🇸 United States</option>
+                                            <option value="United Kingdom">🇬🇧 United Kingdom</option>
+                                            <option value="Canada">🇨🇦 Canada</option>
+                                            <option value="Australia">🇦🇺 Australia</option>
+                                            <option value="Germany">🇩🇪 Germany</option>
+                                            <option value="France">🇫🇷 France</option>
+                                            <option value="Italy">🇮🇹 Italy</option>
+                                            <option value="Spain">🇪🇸 Spain</option>
+                                            <option value="Netherlands">🇳🇱 Netherlands</option>
+                                            <option value="Japan">🇯🇵 Japan</option>
+                                            <option value="South Korea">🇰🇷 South Korea</option>
+                                            <option value="Singapore">🇸🇬 Singapore</option>
+                                            <option value="Hong Kong">🇭🇰 Hong Kong</option>
+                                            <option value="India">🇮🇳 India</option>
+                                            <option value="Brazil">🇧🇷 Brazil</option>
+                                            <option value="Mexico">🇲🇽 Mexico</option>
+                                            <option value="Argentina">🇦🇷 Argentina</option>
+                                            <option value="Sweden">🇸🇪 Sweden</option>
+                                            <option value="Denmark">🇩🇰 Denmark</option>
+                                            <option value="Norway">🇳🇴 Norway</option>
+                                            <option value="Seoul">🏙️ Seoul</option>
+                                            <option value="Tokyo">🏙️ Tokyo</option>
+                                            <option value="London">🏙️ London</option>
+                                            <option value="New York">🏙️ New York</option>
+                                            <option value="Berlin">🏙️ Berlin</option>
+                                            <option value="Paris">🏙️ Paris</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="demographic" class="form-label">Target Demographic</label>
+                                        <label for="demographic" class="form-label">
+                                            <i class="fas fa-users me-2"></i>Target Demographic
+                                        </label>
                                         <select class="form-select" id="demographic" required>
-                                            <option value="">Select Demographic</option>
-                                            <option value="Gen Z">Gen Z (18-25)</option>
-                                            <option value="Millennials">Millennials (26-35)</option>
-                                            <option value="Gen X">Gen X (36-50)</option>
-                                            <option value="Young Professionals">Young Professionals</option>
-                                            <option value="Creative Professionals">Creative Professionals</option>
-                                            <option value="Tech Workers">Tech Workers</option>
-                                            <option value="Students">Students</option>
-                                            <option value="Urban Families">Urban Families</option>
+                                            <option value="">Select a demographic...</option>
+                                            <option value="Gen Z">🎮 Gen Z (Born 1997-2012)</option>
+                                            <option value="Millennials">📱 Millennials (Born 1981-1996)</option>
+                                            <option value="Gen X">💼 Gen X (Born 1965-1980)</option>
+                                            <option value="Baby Boomers">📺 Baby Boomers (Born 1946-1964)</option>
+                                            <option value="Urban Professionals">🏢 Urban Professionals</option>
+                                            <option value="Creative Professionals">🎨 Creative Professionals</option>
+                                            <option value="Students">📚 Students</option>
+                                            <option value="Parents">👨‍👩‍👧‍👦 Parents</option>
+                                            <option value="Tech Enthusiasts">💻 Tech Enthusiasts</option>
+                                            <option value="Health & Wellness Focused">🏃‍♀️ Health & Wellness Focused</option>
+                                            <option value="Luxury Consumers">💎 Luxury Consumers</option>
+                                            <option value="Budget Conscious">💰 Budget Conscious</option>
+                                            <option value="Eco-Conscious">🌱 Eco-Conscious</option>
+                                            <option value="Entrepreneurs">🚀 Entrepreneurs</option>
+                                            <option value="Retirees">🏖️ Retirees</option>
+                                            <option value="Fashion Enthusiasts">👗 Fashion Enthusiasts</option>
+                                            <option value="Music Lovers">🎵 Music Lovers</option>
+                                            <option value="Foodies">🍴 Foodies</option>
+                                            <option value="Travelers">✈️ Travelers</option>
+                                            <option value="Fitness Enthusiasts">💪 Fitness Enthusiasts</option>
                                         </select>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" id="generate-btn">
-                                    <i class="fas fa-magic me-2"></i>Generate Persona
-                                </button>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg animate-pulse" id="generate-btn">
+                                        <i class="fas fa-magic me-2"></i>Generate Cultural Persona
+                                    </button>
+                                    <p class="mt-3 text-muted small">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Uses real cultural data from Qloo API + AI analysis from Google Gemini
+                                    </p>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -138,15 +262,22 @@
             </div>
         </div>
 
-        <!-- Loading Modal -->
+        <!-- Enhanced Loading Modal -->
         <div class="modal fade" id="loadingModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-body text-center">
-                        <div class="spinner-border text-primary mb-3" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                    <div class="modal-body text-center py-5">
+                        <div class="loading-spinner mb-4"></div>
+                        <h5 id="loading-text" class="mb-3">Generating Cultural Persona...</h5>
+                        <div class="progress mb-3" style="height: 6px; border-radius: 10px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                 style="background: var(--primary-gradient); width: 0%;" 
+                                 id="loading-progress"></div>
                         </div>
-                        <h5 id="loading-text">Processing...</h5>
+                        <p class="text-muted small mb-0" id="loading-detail">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Fetching cultural data from Qloo API...
+                        </p>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TasteShift - Cultural Intelligence Platform</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="onboarding-hero">
+        <div class="container">
+            <div class="onboarding-card animate-fade-in">
+                
+                <!-- Welcome Step -->
+                <div id="step-1" class="onboarding-step">
+                    <div class="feature-icon animate-pulse">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h1 class="display-4 mb-4">Welcome to TasteShift</h1>
+                    <p class="lead mb-4">
+                        The world's first Cultural Intelligence Platform that generates authentic audience personas 
+                        using AI-powered taste analysis and real-time cultural data.
+                    </p>
+                    <div class="row text-center mb-4">
+                        <div class="col-md-4 mb-3">
+                            <div class="feature-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <h6 class="mt-2">Global Cultural Data</h6>
+                            <small class="text-muted">Real-time insights from 195+ countries</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="feature-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h6 class="mt-2">AI-Generated Personas</h6>
+                            <small class="text-muted">Detailed audience profiles in seconds</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="feature-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h6 class="mt-2">Campaign Analysis</h6>
+                            <small class="text-muted">Measure cultural alignment instantly</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg" onclick="nextStep()">
+                        <i class="fas fa-arrow-right me-2"></i>Get Started
+                    </button>
+                </div>
+
+                <!-- How It Works Step -->
+                <div id="step-2" class="onboarding-step" style="display: none;">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h2 class="mb-4">How TasteShift Works</h2>
+                    <div class="row text-start">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 animate-slide-in" style="animation-delay: 0.1s;">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="badge bg-primary me-3" style="font-size: 1rem;">1</span>
+                                        <h6 class="mb-0">Select Your Audience</h6>
+                                    </div>
+                                    <p class="small text-muted">Choose a region and demographic to analyze</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 animate-slide-in" style="animation-delay: 0.2s;">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="badge bg-primary me-3" style="font-size: 1rem;">2</span>
+                                        <h6 class="mb-0">Cultural Data Analysis</h6>
+                                    </div>
+                                    <p class="small text-muted">We fetch real taste patterns using Qloo's API</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 animate-slide-in" style="animation-delay: 0.3s;">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="badge bg-primary me-3" style="font-size: 1rem;">3</span>
+                                        <h6 class="mb-0">AI Persona Generation</h6>
+                                    </div>
+                                    <p class="small text-muted">Gemini AI creates detailed audience profiles</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 animate-slide-in" style="animation-delay: 0.4s;">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="badge bg-primary me-3" style="font-size: 1rem;">4</span>
+                                        <h6 class="mb-0">Campaign Analysis</h6>
+                                    </div>
+                                    <p class="small text-muted">Get taste shock scores and creative suggestions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <button class="btn btn-outline-primary me-3" onclick="prevStep()">
+                            <i class="fas fa-arrow-left me-2"></i>Back
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep()">
+                            <i class="fas fa-arrow-right me-2"></i>Continue
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Features Step -->
+                <div id="step-3" class="onboarding-step" style="display: none;">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h2 class="mb-4">Powerful Features</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-center h-100 animate-fade-in" style="animation-delay: 0.1s;">
+                                <div class="card-body">
+                                    <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 1rem;">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <h6>Real Cultural Data</h6>
+                                    <p class="small text-muted">Access authentic taste patterns across music, food, fashion, and lifestyle preferences</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-center h-100 animate-fade-in" style="animation-delay: 0.2s;">
+                                <div class="card-body">
+                                    <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 1rem;">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <h6>AI-Powered Insights</h6>
+                                    <p class="small text-muted">Generate comprehensive personas with psychographics, behaviors, and motivations</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-center h-100 animate-fade-in" style="animation-delay: 0.3s;">
+                                <div class="card-body">
+                                    <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 1rem;">
+                                        <i class="fas fa-bullhorn"></i>
+                                    </div>
+                                    <h6>Campaign Analysis</h6>
+                                    <p class="small text-muted">Measure how well your campaigns align with cultural preferences (0-100 score)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6 mb-3">
+                            <div class="card animate-slide-in" style="animation-delay: 0.4s;">
+                                <div class="card-body">
+                                    <h6><i class="fas fa-lightbulb me-2 text-warning"></i>Creative Suggestions</h6>
+                                    <p class="small text-muted mb-0">Get AI-generated taglines, concepts, and visual directions</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card animate-slide-in" style="animation-delay: 0.5s;">
+                                <div class="card-body">
+                                    <h6><i class="fas fa-save me-2 text-success"></i>Save & Compare</h6>
+                                    <p class="small text-muted mb-0">Store personas and analyses for future reference</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <button class="btn btn-outline-primary me-3" onclick="prevStep()">
+                            <i class="fas fa-arrow-left me-2"></i>Back
+                        </button>
+                        <button class="btn btn-success btn-lg" onclick="startApp()">
+                            <i class="fas fa-rocket me-2"></i>Start Creating Personas
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step active" id="indicator-1"></div>
+                    <div class="step" id="indicator-2"></div>
+                    <div class="step" id="indicator-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function showStep(step) {
+            // Hide all steps
+            for (let i = 1; i <= totalSteps; i++) {
+                document.getElementById(`step-${i}`).style.display = 'none';
+                document.getElementById(`indicator-${i}`).classList.remove('active');
+            }
+            
+            // Show current step
+            document.getElementById(`step-${step}`).style.display = 'block';
+            document.getElementById(`indicator-${step}`).classList.add('active');
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function startApp() {
+            window.location.href = '/';
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll/view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

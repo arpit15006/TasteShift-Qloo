@@ -270,9 +270,35 @@ function getIconForType(type) {
 
 function showLoading(text) {
     document.getElementById('loading-text').textContent = text;
+    document.getElementById('loading-detail').innerHTML = '<i class="fas fa-info-circle me-1"></i>Fetching cultural data from Qloo API...';
+    
+    // Simulate progress animation
+    const progressBar = document.getElementById('loading-progress');
+    progressBar.style.width = '0%';
+    
+    setTimeout(() => {
+        progressBar.style.width = '30%';
+        document.getElementById('loading-detail').innerHTML = '<i class="fas fa-brain me-1"></i>Analyzing cultural patterns with AI...';
+    }, 1000);
+    
+    setTimeout(() => {
+        progressBar.style.width = '70%';
+        document.getElementById('loading-detail').innerHTML = '<i class="fas fa-user me-1"></i>Generating detailed persona...';
+    }, 3000);
+    
+    setTimeout(() => {
+        progressBar.style.width = '95%';
+        document.getElementById('loading-detail').innerHTML = '<i class="fas fa-check me-1"></i>Finalizing results...';
+    }, 8000);
+    
     loadingModal.show();
 }
 
 function hideLoading() {
-    loadingModal.hide();
+    const progressBar = document.getElementById('loading-progress');
+    progressBar.style.width = '100%';
+    setTimeout(() => {
+        loadingModal.hide();
+        progressBar.style.width = '0%';
+    }, 500);
 }
