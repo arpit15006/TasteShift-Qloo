@@ -7,11 +7,11 @@ Your TasteShift project is **100% ready** for Railway deployment. All configurat
 ## 🎯 What's Been Optimized
 
 ### ✅ **Requirements.txt** - Production Ready
-- All package versions pinned for stability
-- `psycopg2-binary==2.9.9` for PostgreSQL support
+- Core packages pinned for stability
+- `psycopg2-binary` for PostgreSQL support (latest compatible)
 - `gunicorn==21.2.0` for production server
-- `google-generativeai==0.8.2` for Gemini API
-- Compatible versions tested for Railway
+- `google-generativeai` for Gemini API (latest compatible)
+- Flexible versioning for maximum compatibility across Python versions
 
 ### ✅ **Railway Configuration** - Optimized
 - `railway.toml` configured with automatic database initialization
