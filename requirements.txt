@@ -45,3 +45,7 @@ click==8.1.7
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.3
+
+# Additional dependencies for data processing and visualization
+kaleido==0.2.1
+scipy==1.11.3
