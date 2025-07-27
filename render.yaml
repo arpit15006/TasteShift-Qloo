@@ -1,22 +1,29 @@
 services:
   - type: web
-    name: tasteshift
+    name: tasteshift-qloo
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn main:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120"
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt"
+    startCommand: "./start.sh"
     plan: free
+    healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
-      - key: GEMINI_API_KEY
-        sync: false
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHONPATH
+        value: /opt/render/project/src
+      - key: QLOO_API_URL
+        value: https://hackathon.api.qloo.com
       - key: QLOO_API_KEY
-        sync: false
+        value: W-_OejnIgjKjlrZT1exz0fFtkIEf7UtwfwuW33rgedU
+      - key: GEMINI_API_KEY
+        value: AIzaSyCJmaRDeEs4SQOYLkpQv_JVVoC_-mXe1N8
       - key: SUPABASE_URL
-        sync: false
+        value: https://onscypevhzxnucswtspm.supabase.co
       - key: SUPABASE_ANON_KEY
-        sync: false
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9uc2N5cGV2aHp4bnVjc3d0c3BtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyMjk1NDEsImV4cCI6MjA2NzgwNTU0MX0.44Ykn5tfwFi0JhAmFqJSBSVE4dh2gt6j3RIADCZoSm0
       - key: DATABASE_URL
-        sync: false
+        value: postgresql://postgres.onscypevhzxnucswtspm:Arpit1234@aws-0-ap-south-1.pooler.supabase.com:6543/postgres
       - key: SESSION_SECRET
         generateValue: true
