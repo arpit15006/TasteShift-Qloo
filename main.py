@@ -16,7 +16,18 @@ except Exception as e:
 
 if __name__ == '__main__':
     # Use PORT environment variable for deployment platforms
-    port = int(os.environ.get('PORT', 8000))
+    try:
+        port_env = os.environ.get('PORT', '8000')
+        # Handle case where PORT might be a string like '$PORT'
+        if port_env.startswith('$'):
+            port = 8000
+            logger.warning(f"⚠️ Invalid PORT environment variable: {port_env}, using default: {port}")
+        else:
+            port = int(port_env)
+    except (ValueError, TypeError):
+        port = 8000
+        logger.warning(f"⚠️ Could not parse PORT, using default: {port}")
+
     debug = os.environ.get('FLASK_ENV') != 'production'
 
     logger.info(f"🌐 Starting server on port {port}")
