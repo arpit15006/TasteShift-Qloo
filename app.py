@@ -119,52 +119,61 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # Initialize the app with the extension
 db.init_app(app)
 
-with app.app_context():
+def init_database():
+    """Initialize database tables safely"""
     try:
-        # Import models to ensure tables are created
-        # Use a more specific import to avoid circular import issues
-        from models import Base
-        db.create_all()
-        logging.info("Database tables created successfully")
-    except ImportError as e:
-        logging.error(f"Models import failed: {str(e)}")
-        logging.info("Attempting alternative import approach...")
-        try:
-            # Try direct table creation without importing models
-            # This is a fallback for demo purposes
-            from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
-            from sqlalchemy.orm import relationship
-            from datetime import datetime
-
-            # Define models directly if import fails
-            class Persona(Base):
-                __tablename__ = 'persona'
-                id = Column(Integer, primary_key=True)
-                region = Column(String(100), nullable=False)
-                demographic = Column(String(100), nullable=False)
-                taste_data = Column(Text)
-                persona_description = Column(Text)
-                created_at = Column(DateTime, default=datetime.utcnow)
-
-            class CampaignAnalysis(Base):
-                __tablename__ = 'campaign_analysis'
-                id = Column(Integer, primary_key=True)
-                persona_id = Column(Integer, ForeignKey('persona.id'), nullable=False)
-                campaign_brief = Column(Text, nullable=False)
-                taste_shock_score = Column(Integer)
-                creative_suggestions = Column(Text)
-                created_at = Column(DateTime, default=datetime.utcnow)
-
-                persona = relationship('Persona', backref='analyses')
-
+        with app.app_context():
+            # Import models to ensure tables are created
+            from models import Base
             db.create_all()
-            logging.info("Database tables created with fallback approach")
+            logging.info("✅ Database tables created successfully")
+            return True
+    except ImportError as e:
+        logging.warning(f"Models import failed: {str(e)}")
+        try:
+            with app.app_context():
+                # Try direct table creation without importing models
+                from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+                from sqlalchemy.orm import relationship
+                from datetime import datetime
+
+                # Define models directly if import fails
+                class Persona(Base):
+                    __tablename__ = 'persona'
+                    id = Column(Integer, primary_key=True)
+                    region = Column(String(100), nullable=False)
+                    demographic = Column(String(100), nullable=False)
+                    taste_data = Column(Text)
+                    persona_description = Column(Text)
+                    created_at = Column(DateTime, default=datetime.utcnow)
+
+                class CampaignAnalysis(Base):
+                    __tablename__ = 'campaign_analysis'
+                    id = Column(Integer, primary_key=True)
+                    persona_id = Column(Integer, ForeignKey('persona.id'), nullable=False)
+                    campaign_brief = Column(Text, nullable=False)
+                    taste_shock_score = Column(Integer)
+                    creative_suggestions = Column(Text)
+                    created_at = Column(DateTime, default=datetime.utcnow)
+
+                    persona = relationship('Persona', backref='analyses')
+
+                db.create_all()
+                logging.info("✅ Database tables created with fallback approach")
+                return True
         except Exception as inner_e:
-            logging.error(f"Fallback table creation failed: {str(inner_e)}")
+            logging.error(f"❌ Fallback table creation failed: {str(inner_e)}")
+            return False
     except Exception as e:
-        logging.error(f"Database initialization failed: {str(e)}")
-        # Continue with app startup even if database fails
-        pass
+        logging.error(f"❌ Database initialization failed: {str(e)}")
+        return False
+
+# Initialize database in a separate function
+try:
+    init_database()
+except Exception as e:
+    logging.warning(f"⚠️ Database initialization skipped: {str(e)}")
+    logging.info("🚀 App will continue without database (demo mode)")
 
 # Import routes
 from routes import *

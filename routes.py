@@ -45,6 +45,11 @@ import time
 import os
 from datetime import datetime
 
+@app.route('/health')
+def health_check():
+    """Health check endpoint for Railway"""
+    return jsonify({"status": "healthy", "message": "TasteShift is running"}), 200
+
 @app.route('/')
 def index():
     return render_template('index.html')
