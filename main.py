@@ -16,17 +16,22 @@ except Exception as e:
 
 if __name__ == '__main__':
     # Use PORT environment variable for deployment platforms
-    try:
-        port_env = os.environ.get('PORT', '8000')
-        # Handle case where PORT might be a string like '$PORT'
-        if port_env.startswith('$'):
-            port = 8000
-            logger.warning(f"⚠️ Invalid PORT environment variable: {port_env}, using default: {port}")
-        else:
-            port = int(port_env)
-    except (ValueError, TypeError):
-        port = 8000
-        logger.warning(f"⚠️ Could not parse PORT, using default: {port}")
+    port = 8000  # Default port
+
+    # Try to get PORT from environment
+    port_env = os.environ.get('PORT')
+    if port_env:
+        try:
+            # Only try to convert if it's not a variable reference
+            if not port_env.startswith('$') and port_env.isdigit():
+                port = int(port_env)
+                logger.info(f"✅ Using PORT from environment: {port}")
+            else:
+                logger.warning(f"⚠️ Invalid PORT environment variable: {port_env}, using default: {port}")
+        except (ValueError, TypeError) as e:
+            logger.warning(f"⚠️ Could not parse PORT '{port_env}': {e}, using default: {port}")
+    else:
+        logger.info(f"ℹ️ No PORT environment variable set, using default: {port}")
 
     debug = os.environ.get('FLASK_ENV') != 'production'
 
