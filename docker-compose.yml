@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - QLOO_API_KEY=${QLOO_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+      - SESSION_SECRET=${SESSION_SECRET}
+    volumes:
+      - ./instance:/app/instance
+    restart: unless-stopped

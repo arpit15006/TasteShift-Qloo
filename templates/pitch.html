@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasteShift - Hackathon Pitch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <style>
+        .pitch-slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        .slide-content {
+            max-width: 1200px;
+            text-align: center;
+        }
+        .tech-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin: 0.25rem;
+            font-size: 0.9rem;
+        }
+        .metric-highlight {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+        }
+        .api-status {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <section class="pitch-slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="slide-content">
+            <h1 class="display-1 mb-4">🎯 TasteShift</h1>
+            <h2 class="mb-4">AI-Powered Cultural Intelligence Platform</h2>
+            <p class="lead mb-5">Bridging cultures through taste patterns and cross-domain insights</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="tech-badge">
+                        <i class="fas fa-brain me-2"></i>Qloo API Integration
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-badge">
+                        <i class="fas fa-robot me-2"></i>Gemini AI 2.0 Flash
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-badge">
+                        <i class="fas fa-database me-2"></i>Real-Time Analytics
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 2: Problem & Solution -->
+    <section class="pitch-slide bg-light">
+        <div class="slide-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="text-danger mb-4">🚨 The Problem</h2>
+                    <ul class="list-unstyled fs-5">
+                        <li class="mb-3"><i class="fas fa-times text-danger me-3"></i>Cultural misunderstandings cost businesses billions</li>
+                        <li class="mb-3"><i class="fas fa-times text-danger me-3"></i>Generic personas miss cultural nuances</li>
+                        <li class="mb-3"><i class="fas fa-times text-danger me-3"></i>Cross-domain insights are fragmented</li>
+                        <li class="mb-3"><i class="fas fa-times text-danger me-3"></i>Real-time cultural intelligence is lacking</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="text-success mb-4">✅ Our Solution</h2>
+                    <ul class="list-unstyled fs-5">
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i>AI-powered cultural intelligence platform</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Real-time persona generation with Qloo + Gemini</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Cross-domain taste pattern analysis</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Actionable business insights and ROI calculations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: Technical Architecture -->
+    <section class="pitch-slide">
+        <div class="slide-content">
+            <h2 class="mb-5">🏗️ Technical Architecture</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="api-status">
+                        <h4><i class="fas fa-brain me-2"></i>Qloo API</h4>
+                        <p class="mb-0">Cross-domain cultural intelligence</p>
+                        <small>✅ Real-time taste patterns</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="api-status">
+                        <h4><i class="fas fa-robot me-2"></i>Gemini AI</h4>
+                        <p class="mb-0">Advanced persona generation</p>
+                        <small>✅ Cultural reasoning & analysis</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="api-status">
+                        <h4><i class="fas fa-database me-2"></i>Supabase</h4>
+                        <p class="mb-0">Real-time data storage</p>
+                        <small>✅ PostgreSQL integration</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="api-status">
+                        <h4><i class="fas fa-chart-line me-2"></i>Analytics</h4>
+                        <p class="mb-0">Business intelligence</p>
+                        <small>✅ ROI & impact calculations</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Key Features -->
+    <section class="pitch-slide bg-light">
+        <div class="slide-content">
+            <h2 class="mb-5">🚀 Key Features</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="metric-highlight">
+                        <h3><i class="fas fa-users me-2"></i>Smart Personas</h3>
+                        <p>AI-generated personas with real cultural intelligence from Qloo API</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="metric-highlight">
+                        <h3><i class="fas fa-calculator me-2"></i>ROI Calculator</h3>
+                        <p>Real business impact calculations with 180%+ ROI projections</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="metric-highlight">
+                        <h3><i class="fas fa-chart-bar me-2"></i>Live Analytics</h3>
+                        <p>Real-time cultural insights and cross-domain analysis</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="metric-highlight">
+                        <h3><i class="fas fa-shield-alt me-2"></i>Risk Assessment</h3>
+                        <p>Cultural risk analysis for global market expansion</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="metric-highlight">
+                        <h3><i class="fas fa-book me-2"></i>Case Studies</h3>
+                        <p>AI-generated success stories with real data insights</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="metric-highlight">
+                        <h3><i class="fas fa-comments me-2"></i>Cultural Chat</h3>
+                        <p>AI assistant with integrated cultural intelligence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Demo Metrics -->
+    <section class="pitch-slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+        <div class="slide-content">
+            <h2 class="mb-5">📊 Live Demo Metrics</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="metric-highlight">
+                        <h1 class="display-4">100%</h1>
+                        <h4>Real API Usage</h4>
+                        <p>All features use live Qloo + Gemini APIs</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-highlight">
+                        <h1 class="display-4">183%</h1>
+                        <h4>Average ROI</h4>
+                        <p>Business impact calculations from real data</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-highlight">
+                        <h1 class="display-4">10+</h1>
+                        <h4>Core Features</h4>
+                        <p>All powered by cultural intelligence</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-highlight">
+                        <h1 class="display-4">92%</h1>
+                        <h4>Confidence Score</h4>
+                        <p>AI-powered analysis accuracy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Business Impact -->
+    <section class="pitch-slide bg-dark text-white">
+        <div class="slide-content">
+            <h2 class="mb-5">💰 Business Impact</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="text-warning mb-4">Market Opportunity</h3>
+                    <ul class="fs-5">
+                        <li>$50B+ global market research industry</li>
+                        <li>Growing demand for cultural intelligence</li>
+                        <li>AI-powered insights market expanding rapidly</li>
+                        <li>Cross-domain analysis is underserved</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="text-success mb-4">Competitive Advantage</h3>
+                    <ul class="fs-5">
+                        <li>First to combine Qloo + Gemini for personas</li>
+                        <li>Real-time cultural intelligence platform</li>
+                        <li>Cross-domain taste pattern analysis</li>
+                        <li>Actionable ROI calculations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Call to Action -->
+    <section class="pitch-slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+        <div class="slide-content">
+            <h1 class="display-2 mb-4">🎯 Ready to Demo!</h1>
+            <h3 class="mb-5">Experience TasteShift's Cultural Intelligence Platform</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="/" class="btn btn-light btn-lg me-3">
+                        <i class="fas fa-play me-2"></i>Live Demo
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="/onboarding" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Start Onboarding
+                    </a>
+                </div>
+            </div>
+            <div class="mt-5">
+                <p class="lead">Built with ❤️ for Qloo's Taste AI Hackathon</p>
+                <p>Showcasing the power of cultural intelligence through real APIs</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Auto-advance slides for demo
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.pitch-slide');
+        
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

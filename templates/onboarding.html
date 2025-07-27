@@ -1,192 +1,446 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to TasteShift - Cultural Intelligence Platform</title>
-    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.47/build/spline-viewer.js"></script>
+    <style>
+        /* 3D Robot Integration Styles */
+        .robot-container {
+            position: relative;
+            padding: 20px;
+        }
+
+        .robot-container spline-viewer {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .robot-container:hover spline-viewer {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Smaller robot container for secondary steps */
+        .robot-container-small {
+            position: relative;
+            padding: 10px;
+        }
+
+        .robot-container-small spline-viewer {
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .robot-container-small:hover spline-viewer {
+            transform: scale(1.05);
+        }
+
+        /* Speech Bubble Styles */
+        .speech-bubble {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 20px;
+            position: relative;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #667eea;
+        }
+
+        .speech-bubble p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: white !important;
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            .robot-container {
+                margin-top: 30px;
+                padding: 10px;
+            }
+
+            .robot-container spline-viewer {
+                height: 300px;
+            }
+
+            .speech-bubble {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .robot-container spline-viewer {
+                height: 250px;
+            }
+
+            .speech-bubble {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Enhanced animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 1.2s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(50px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1) translateY(-10px);
+            }
+            70% {
+                transform: scale(0.9) translateY(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Fixed Skip Button -->
+    <div class="position-fixed top-0 end-0 p-4" style="z-index: 9999 !important;">
+        <button class="btn btn-light btn-sm skip-button" onclick="startApp()"
+                style="background: linear-gradient(135deg, #ffffff, #f8fafc) !important;
+                       border: 2px solid #e2e8f0 !important;
+                       color: #1e293b !important;
+                       font-weight: 700 !important;
+                       padding: 10px 20px !important;
+                       border-radius: 30px !important;
+                       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+                       transition: all 0.3s ease !important;
+                       font-size: 0.9rem !important;">
+            <i class="fas fa-times me-2"></i>Skip
+        </button>
+    </div>
+
+    <style>
+        .skip-button:hover {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0) !important;
+            border-color: #cbd5e1 !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2) !important;
+            color: #0f172a !important;
+        }
+
+        .skip-button:active {
+            transform: translateY(-1px) !important;
+        }
+
+        .skip-button:focus {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(99, 102, 241, 0.3) !important;
+            outline: none !important;
+        }
+    </style>
+
     <div class="onboarding-hero">
         <div class="container">
             <div class="onboarding-card animate-fade-in">
                 
                 <!-- Welcome Step -->
                 <div id="step-1" class="onboarding-step">
-                    <div class="feature-icon animate-pulse">
-                        <i class="fas fa-brain"></i>
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <div class="feature-icon animate-pulse animate-glow">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h1 class="display-4 mb-4 text-gradient animate-fade-in">Welcome to TasteShift</h1>
+                            <p class="lead mb-4 animate-fade-in" style="animation-delay: 0.2s;">
+                                The world's first Cultural Intelligence Platform that generates authentic audience personas
+                                using AI-powered taste analysis and real-time cultural data.
+                            </p>
+                            <div class="d-flex align-items-center justify-content-center justify-content-lg-start mb-4">
+                                <div class="greeting-robot-text animate-fade-in" style="animation-delay: 0.5s;">
+                                    <div class="speech-bubble">
+                                        <p class="mb-0 fw-bold" style="color: white;">👋 Hi there! I'm your AI assistant. Ready to explore cultural intelligence?</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="robot-container animate-slide-in-right" style="animation-delay: 0.3s;">
+                                <spline-viewer url="https://prod.spline.design/MRstsszDjoaLLrBf/scene.splinecode"
+                                               style="width: 100%; height: 400px; border-radius: 20px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));">
+                                </spline-viewer>
+                            </div>
+                        </div>
                     </div>
-                    <h1 class="display-4 mb-4">Welcome to TasteShift</h1>
-                    <p class="lead mb-4">
-                        The world's first Cultural Intelligence Platform that generates authentic audience personas 
-                        using AI-powered taste analysis and real-time cultural data.
-                    </p>
-                    <div class="row text-center mb-4">
-                        <div class="col-md-4 mb-3">
-                            <div class="feature-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                    <div class="row text-center mb-5">
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-icon animate-float" style="width: 80px; height: 80px; font-size: 2rem;">
                                 <i class="fas fa-globe-americas"></i>
                             </div>
-                            <h6 class="mt-2">Global Cultural Data</h6>
-                            <small class="text-muted">Real-time insights from 195+ countries</small>
+                            <h5 class="mt-3 text-gradient">Global Cultural Data</h5>
+                            <p class="text-muted">Real-time insights from 195+ countries</p>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="feature-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-icon animate-float" style="animation-delay: 0.5s; width: 80px; height: 80px; font-size: 2rem;">
                                 <i class="fas fa-users"></i>
                             </div>
-                            <h6 class="mt-2">AI-Generated Personas</h6>
-                            <small class="text-muted">Detailed audience profiles in seconds</small>
+                            <h5 class="mt-3 text-gradient">AI-Generated Personas</h5>
+                            <p class="text-muted">Detailed audience profiles in seconds</p>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="feature-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-icon animate-float" style="animation-delay: 1s; width: 80px; height: 80px; font-size: 2rem;">
                                 <i class="fas fa-chart-line"></i>
                             </div>
-                            <h6 class="mt-2">Campaign Analysis</h6>
-                            <small class="text-muted">Measure cultural alignment instantly</small>
+                            <h5 class="mt-3 text-gradient">Campaign Analysis</h5>
+                            <p class="text-muted">Measure cultural alignment instantly</p>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-lg" onclick="nextStep()">
-                        <i class="fas fa-arrow-right me-2"></i>Get Started
+                    <button class="btn btn-primary btn-lg animate-pulse" onclick="nextStep()">
+                        <i class="fas fa-rocket me-2"></i>Get Started
                     </button>
                 </div>
 
                 <!-- How It Works Step -->
                 <div id="step-2" class="onboarding-step" style="display: none;">
-                    <div class="feature-icon">
-                        <i class="fas fa-cogs"></i>
+                    <div class="row align-items-center mb-4">
+                        <div class="col-lg-8">
+                            <div class="feature-icon animate-glow">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h2 class="mb-3 text-gradient">How TasteShift Works</h2>
+                            <div class="speech-bubble animate-fade-in" style="animation-delay: 0.3s;">
+                                <p class="mb-0">🚀 Let me walk you through our 4-step process to create amazing personas!</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="robot-container-small animate-fade-in" style="animation-delay: 0.5s;">
+                                <spline-viewer url="https://prod.spline.design/MRstsszDjoaLLrBf/scene.splinecode"
+                                               style="width: 100%; height: 200px; border-radius: 15px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));">
+                                </spline-viewer>
+                            </div>
+                        </div>
                     </div>
-                    <h2 class="mb-4">How TasteShift Works</h2>
                     <div class="row text-start">
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 animate-slide-in" style="animation-delay: 0.1s;">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 animate-slide-in border-gradient" style="animation-delay: 0.1s;">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-3">
-                                        <span class="badge bg-primary me-3" style="font-size: 1rem;">1</span>
-                                        <h6 class="mb-0">Select Your Audience</h6>
+                                        <div class="feature-icon me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">1</div>
+                                        <h5 class="mb-0 text-gradient">Select Your Audience</h5>
                                     </div>
-                                    <p class="small text-muted">Choose a region and demographic to analyze</p>
+                                    <p class="text-muted">Choose a region and demographic to analyze from our comprehensive global database</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 animate-slide-in" style="animation-delay: 0.2s;">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 animate-slide-in border-gradient" style="animation-delay: 0.2s;">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-3">
-                                        <span class="badge bg-primary me-3" style="font-size: 1rem;">2</span>
-                                        <h6 class="mb-0">Cultural Data Analysis</h6>
+                                        <div class="feature-icon me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">2</div>
+                                        <h5 class="mb-0 text-gradient">Cultural Data Analysis</h5>
                                     </div>
-                                    <p class="small text-muted">We fetch real taste patterns using Qloo's API</p>
+                                    <p class="text-muted">We fetch real taste patterns using Qloo's advanced cultural intelligence API</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 animate-slide-in" style="animation-delay: 0.3s;">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 animate-slide-in border-gradient" style="animation-delay: 0.3s;">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-3">
-                                        <span class="badge bg-primary me-3" style="font-size: 1rem;">3</span>
-                                        <h6 class="mb-0">AI Persona Generation</h6>
+                                        <div class="feature-icon me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">3</div>
+                                        <h5 class="mb-0 text-gradient">AI Persona Generation</h5>
                                     </div>
-                                    <p class="small text-muted">Gemini AI creates detailed audience profiles</p>
+                                    <p class="text-muted">Google Gemini AI creates detailed, actionable audience profiles in seconds</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 animate-slide-in" style="animation-delay: 0.4s;">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 animate-slide-in border-gradient" style="animation-delay: 0.4s;">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-3">
-                                        <span class="badge bg-primary me-3" style="font-size: 1rem;">4</span>
-                                        <h6 class="mb-0">Campaign Analysis</h6>
+                                        <div class="feature-icon me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">4</div>
+                                        <h5 class="mb-0 text-gradient">Campaign Analysis</h5>
                                     </div>
-                                    <p class="small text-muted">Get taste shock scores and creative suggestions</p>
+                                    <p class="text-muted">Get taste shock scores and AI-generated creative suggestions for optimal alignment</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-5">
                         <button class="btn btn-outline-primary me-3" onclick="prevStep()">
                             <i class="fas fa-arrow-left me-2"></i>Back
                         </button>
-                        <button class="btn btn-primary" onclick="nextStep()">
+                        <button class="btn btn-primary btn-lg" onclick="nextStep()">
                             <i class="fas fa-arrow-right me-2"></i>Continue
                         </button>
                     </div>
                 </div>
 
-                <!-- Features Step -->
+
+
+                <!-- Hackathon Features Step -->
                 <div id="step-3" class="onboarding-step" style="display: none;">
-                    <div class="feature-icon">
-                        <i class="fas fa-star"></i>
+                    <div class="text-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h2 class="mb-3 text-gradient">🏆 Winning Features</h2>
+                        <div class="speech-bubble animate-fade-in" style="animation-delay: 0.2s; display: inline-block;">
+                            <p class="mb-0">🚀 Experience cutting-edge AI technology that sets TasteShift apart from the competition!</p>
+                        </div>
                     </div>
-                    <h2 class="mb-4">Powerful Features</h2>
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="card text-center h-100 animate-fade-in" style="animation-delay: 0.1s;">
-                                <div class="card-body">
-                                    <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 1rem;">
+
+                    <!-- Feature Categories -->
+                    <div class="row g-4 mb-4">
+                        <!-- Advanced Qloo Integration -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 animate-fade-in border-gradient" style="animation-delay: 0.1s;">
+                                <div class="card-body text-center">
+                                    <div class="feature-icon mb-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
                                         <i class="fas fa-database"></i>
                                     </div>
-                                    <h6>Real Cultural Data</h6>
-                                    <p class="small text-muted">Access authentic taste patterns across music, food, fashion, and lifestyle preferences</p>
+                                    <h5 class="text-gradient">Advanced Qloo Integration</h5>
+                                    <p class="small text-muted">Real-time recommendations, cultural intelligence dashboard, and predictive analytics</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card text-center h-100 animate-fade-in" style="animation-delay: 0.2s;">
-                                <div class="card-body">
-                                    <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 1rem;">
+
+                        <!-- Intelligent LLM Enhancement -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 animate-fade-in border-gradient" style="animation-delay: 0.2s;">
+                                <div class="card-body text-center">
+                                    <div class="feature-icon mb-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
                                         <i class="fas fa-brain"></i>
                                     </div>
-                                    <h6>AI-Powered Insights</h6>
-                                    <p class="small text-muted">Generate comprehensive personas with psychographics, behaviors, and motivations</p>
+                                    <h5 class="text-gradient">Intelligent LLM Enhancement</h5>
+                                    <p class="small text-muted">Conversational AI, natural language insights, and context-aware recommendations</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card text-center h-100 animate-fade-in" style="animation-delay: 0.3s;">
-                                <div class="card-body">
-                                    <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 1rem;">
-                                        <i class="fas fa-bullhorn"></i>
+
+                        <!-- Interactive Data Visualization -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 animate-fade-in border-gradient" style="animation-delay: 0.3s;">
+                                <div class="card-body text-center">
+                                    <div class="feature-icon mb-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                        <i class="fas fa-chart-line"></i>
                                     </div>
-                                    <h6>Campaign Analysis</h6>
-                                    <p class="small text-muted">Measure how well your campaigns align with cultural preferences (0-100 score)</p>
+                                    <h5 class="text-gradient">Interactive Data Visualization</h5>
+                                    <p class="small text-muted">Real-time dashboards, 3D landscapes, and exportable business reports</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Business Intelligence Suite -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 animate-fade-in border-gradient" style="animation-delay: 0.4s;">
+                                <div class="card-body text-center">
+                                    <div class="feature-icon mb-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <h5 class="text-gradient">Business Intelligence Suite</h5>
+                                    <p class="small text-muted">Market research, brand positioning, competitor analysis, and ROI calculations</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Excellence -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 animate-fade-in border-gradient" style="animation-delay: 0.5s;">
+                                <div class="card-body text-center">
+                                    <div class="feature-icon mb-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                        <i class="fas fa-cogs"></i>
+                                    </div>
+                                    <h5 class="text-gradient">Technical Excellence</h5>
+                                    <p class="small text-muted">Real-time monitoring, advanced caching, load balancing, and performance optimization</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Innovation & Originality -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 animate-fade-in border-gradient" style="animation-delay: 0.6s;">
+                                <div class="card-body text-center">
+                                    <div class="feature-icon mb-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                        <i class="fas fa-rocket"></i>
+                                    </div>
+                                    <h5 class="text-gradient">Innovation & Originality</h5>
+                                    <p class="small text-muted">Voice interface, social sharing, and gamification</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6 mb-3">
-                            <div class="card animate-slide-in" style="animation-delay: 0.4s;">
-                                <div class="card-body">
-                                    <h6><i class="fas fa-lightbulb me-2 text-warning"></i>Creative Suggestions</h6>
-                                    <p class="small text-muted mb-0">Get AI-generated taglines, concepts, and visual directions</p>
-                                </div>
+
+                    <div class="row align-items-center mt-4">
+                        <div class="col-lg-8 text-center text-lg-start">
+                            <div class="speech-bubble animate-fade-in mb-3" style="animation-delay: 0.7s; display: inline-block;">
+                                <p class="mb-0">🎉 Ready to experience all these amazing features? Let's start your cultural intelligence journey!</p>
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-primary me-3" onclick="prevStep()">
+                                    <i class="fas fa-arrow-left me-2"></i>Back
+                                </button>
+                                <button class="btn btn-success btn-lg animate-pulse" onclick="startApp()">
+                                    <i class="fas fa-rocket me-2"></i>Start Using TasteShift
+                                </button>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card animate-slide-in" style="animation-delay: 0.5s;">
-                                <div class="card-body">
-                                    <h6><i class="fas fa-save me-2 text-success"></i>Save & Compare</h6>
-                                    <p class="small text-muted mb-0">Store personas and analyses for future reference</p>
-                                </div>
+                        <div class="col-lg-4">
+                            <div class="robot-container-small animate-bounce-in" style="animation-delay: 0.8s;">
+                                <spline-viewer url="https://prod.spline.design/MRstsszDjoaLLrBf/scene.splinecode"
+                                               style="width: 100%; height: 180px; border-radius: 15px; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));">
+                                </spline-viewer>
                             </div>
                         </div>
-                    </div>
-                    <div class="mt-4">
-                        <button class="btn btn-outline-primary me-3" onclick="prevStep()">
-                            <i class="fas fa-arrow-left me-2"></i>Back
-                        </button>
-                        <button class="btn btn-success btn-lg" onclick="startApp()">
-                            <i class="fas fa-rocket me-2"></i>Start Creating Personas
-                        </button>
                     </div>
                 </div>
 
-                <!-- Step Indicator -->
-                <div class="step-indicator">
-                    <div class="step active" id="indicator-1"></div>
-                    <div class="step" id="indicator-2"></div>
-                    <div class="step" id="indicator-3"></div>
+                <!-- Enhanced Step Indicator -->
+                <div class="step-indicator" style="display: flex; justify-content: center; margin: 3rem 0 2rem; gap: 1rem; z-index: 100; position: relative;">
+                    <div class="step active" id="indicator-1" style="width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #a855f7); transition: all 0.3s ease; cursor: pointer; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);"></div>
+                    <div class="step" id="indicator-2" style="width: 16px; height: 16px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); transition: all 0.3s ease; cursor: pointer;"></div>
+                    <div class="step" id="indicator-3" style="width: 16px; height: 16px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); transition: all 0.3s ease; cursor: pointer;"></div>
                 </div>
             </div>
         </div>
@@ -198,15 +452,51 @@
         const totalSteps = 3;
 
         function showStep(step) {
+            console.log('Showing step:', step); // Debug log
+
             // Hide all steps
             for (let i = 1; i <= totalSteps; i++) {
-                document.getElementById(`step-${i}`).style.display = 'none';
-                document.getElementById(`indicator-${i}`).classList.remove('active');
+                const stepElement = document.getElementById(`step-${i}`);
+                const indicatorElement = document.getElementById(`indicator-${i}`);
+
+                if (stepElement) {
+                    stepElement.style.display = 'none';
+                }
+
+                if (indicatorElement) {
+                    indicatorElement.classList.remove('active');
+                    // Reset indicator styling
+                    indicatorElement.style.background = 'rgba(255, 255, 255, 0.3)';
+                    indicatorElement.style.boxShadow = 'none';
+                }
             }
-            
+
             // Show current step
-            document.getElementById(`step-${step}`).style.display = 'block';
-            document.getElementById(`indicator-${step}`).classList.add('active');
+            const currentStepElement = document.getElementById(`step-${step}`);
+            const currentIndicatorElement = document.getElementById(`indicator-${step}`);
+
+            if (currentStepElement) {
+                currentStepElement.style.display = 'block';
+            }
+
+            if (currentIndicatorElement) {
+                currentIndicatorElement.classList.add('active');
+                // Active indicator styling
+                currentIndicatorElement.style.background = 'linear-gradient(135deg, #6366f1, #a855f7)';
+                currentIndicatorElement.style.boxShadow = '0 4px 15px rgba(99, 102, 241, 0.4)';
+            }
+
+            // Update robot message
+            updateRobotMessage(step);
+
+            // Add entrance animation to robots
+            setTimeout(() => {
+                const robots = document.querySelectorAll(`#step-${step} spline-viewer`);
+                robots.forEach(robot => {
+                    robot.style.opacity = '1';
+                    robot.style.transform = 'scale(1)';
+                });
+            }, 200);
         }
 
         function nextStep() {
@@ -224,7 +514,33 @@
         }
 
         function startApp() {
-            window.location.href = '/';
+            // Add a little celebration before redirecting
+            const robots = document.querySelectorAll('spline-viewer');
+            robots.forEach(robot => {
+                robot.style.transform = 'scale(1.1) rotate(5deg)';
+                robot.style.transition = 'transform 0.3s ease';
+            });
+
+            setTimeout(() => {
+                window.location.href = '/?from=onboarding';
+            }, 500);
+        }
+
+        // Dynamic robot messages based on step
+        const robotMessages = {
+            1: "👋 Hi there! I'm your AI assistant. Ready to explore cultural intelligence?",
+            2: "🚀 Let me walk you through our 4-step process to create amazing personas!",
+            3: "🎉 You're almost ready! Here are the amazing features waiting for you!",
+            4: "🚀 Experience cutting-edge AI technology that sets TasteShift apart from the competition!"
+        };
+
+        function updateRobotMessage(step) {
+            const speechBubbles = document.querySelectorAll('.speech-bubble p');
+            speechBubbles.forEach((bubble, index) => {
+                if (robotMessages[step] && index < Object.keys(robotMessages).length) {
+                    bubble.textContent = robotMessages[step];
+                }
+            });
         }
 
         // Add some interactive animations

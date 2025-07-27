@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: tasteshift
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn main:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120"
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: QLOO_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true

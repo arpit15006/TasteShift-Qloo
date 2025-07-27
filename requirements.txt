@@ -1,0 +1,46 @@
+# TasteShift - Qloo Taste AI Hackathon Requirements
+# Core Flask and Web Framework
+Flask==2.3.3
+Flask-SQLAlchemy==3.0.5
+Flask-CORS==4.0.0
+Werkzeug==2.3.7
+gunicorn==21.2.0
+
+# Database Support
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.21
+
+# API and HTTP Requests
+requests==2.31.0
+urllib3==2.0.4
+
+# Google AI (Gemini)
+google-generativeai==0.8.2
+
+# Data Processing and Analysis
+pandas==2.1.4
+numpy==1.24.4
+
+# Date and Time Handling
+python-dateutil==2.8.2
+
+# Environment and Configuration
+python-dotenv==1.0.0
+
+# Logging and Utilities
+colorama==0.4.6
+
+# Security and Authentication
+cryptography==41.0.8
+
+# JSON and Data Serialization
+jsonschema==4.19.1
+
+# HTTP Client Enhancements
+httpx==0.24.1
+
+# Additional utilities
+click==8.1.7
+itsdangerous==2.1.2
+Jinja2==3.1.2
+MarkupSafe==2.1.3
